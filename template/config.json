@@ -1,0 +1,93 @@
+{
+  "wishType": "birthday",
+  "recipient": {
+    "name": "Sophia Anderson",
+    "nickname": "Soph",
+    "age": 25,
+    "birthDate": "2026-08-15T18:30",
+    "relationship": "best-friend",
+    "avatar": "https://i.pravatar.cc/300"
+  },
+  "media": {
+    "photos": [
+      {
+        "id": "photo-1",
+        "name": "Memory 1",
+        "url": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "caption": "Summer Beach Vacation"
+      },
+      {
+        "id": "photo-2",
+        "name": "Memory 2",
+        "url": "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "caption": "Graduation Day Celebration"
+      },
+      {
+        "id": "photo-3",
+        "name": "Memory 3",
+        "url": "https://images.unsplash.com/photo-1530103862676-de8892b12a15?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "caption": "City Lights"
+      }
+    ],
+    "music": {
+      "type": "preset",
+      "presetKey": "orchestral",
+      "customUrl": "",
+      "volume": 80,
+      "autoplay": true
+    },
+    "videos": [
+      {
+        "id": "video-1",
+        "name": "Wish Video",
+        "url": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "title": "Group Friends Birthday Wish"
+      }
+    ]
+  },
+  "theme": {
+    "preset": "preset-pastel",
+    "customColors": {
+      "primary": "#a855f7",
+      "secondary": "#ec4899",
+      "background": "#090b15",
+      "surface": "rgba(255, 255, 255, 0.05)"
+    }
+  },
+  "timeline": [
+    {
+      "id": "t-1",
+      "title": "First Day We Met",
+      "date": "Summer 2018",
+      "description": "The unforgettable summer day where it all began...",
+      "photo": "https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "id": "t-2",
+      "title": "College Graduation",
+      "date": "May 2022",
+      "description": "We made it! Celebrating our degrees together.",
+      "photo": ""
+    }
+  ],
+  "letter": {
+    "message": "Dear Sophia,\n\nHappy Birthday! May your day be filled with laughter, love, and endless happiness. Here is to another amazing year of beautiful memories together!\n\nLove always.",
+    "envelopeColor": "#ec4899",
+    "sealStyle": "rose-pink"
+  },
+  "gift": {
+    "type": "voucher",
+    "title": "Custom Voucher",
+    "detail": "Free Coffee Date & Movie Night"
+  },
+  "features": {
+    "guestBook": true,
+    "confettiDensity": 120,
+    "micBlowout": true,
+    "floatingBalloons": true
+  },
+  "meta": {
+    "lastUpdated": "2026-08-01T12:00:00.000Z",
+    "version": "1.0.0"
+  }
+}
