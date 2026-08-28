@@ -11,6 +11,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST_URL || `http://localhost:${PORT}`;
 
+// ─── ADMIN AUTH CONFIG ──────────────────────────────────────────────
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'wishcraft2024';
+const SESSION_SECRET = process.env.SESSION_SECRET || crypto.randomBytes(32).toString('hex');
+
 // ─── RAZORPAY CONFIG ────────────────────────────────────────────────
 // Replace with your actual keys from https://dashboard.razorpay.com/
 const RAZORPAY_KEY_ID = 'rzp_test_YOUR_KEY_ID';
