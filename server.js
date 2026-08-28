@@ -5,6 +5,7 @@ const cors = require('cors');
 const archiver = require('archiver');
 const crypto = require('crypto');
 const Razorpay = require('razorpay');
+const session = require('express-session');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -35,6 +36,42 @@ const tokenStore = new Map();
 // ─── MIDDLEWARE ──────────────────────────────────────────────────────
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
+
+// ─── SESSION MIDDLEWARE ──────────────────────────────────────────────
+app.use(session({
+  secret: SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+  },
+}));
+
+// ─── ADMIN AUTH MIDDLEWARE ───────────────────────────────────────────
+// Protects all /admin/ routes except login.html
+app.use('/admin', (req, res, next) => {
+  const publicPaths = ['/login.html', '/login'];
+  if (publicPaths.includes(req.path)) return next();
+  if (req.session?.adminAuthenticated) return next();
+  return res.redirect('/admin/login.html');
+});
+
+// ─── ADMIN LOGIN / LOGOUT ROUTES ─────────────────────────────────────
+app.post('/api/admin/login', (req, res) => {
+  const { password } = req.body;
+  if (password === ADMIN_PASSWORD) {
+    req.session.adminAuthenticated = true;
+    return res.json({ success: true });
+  }
+  res.status(401).json({ success: false, error: 'Incorrect password. Please try again.' });
+});
+
+app.get('/api/admin/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/admin/login.html');
+});
 app.use('/', express.static(path.join(__dirname, '/')));
 
 // ─── PAYMENT ROUTES ──────────────────────────────────────────────────
