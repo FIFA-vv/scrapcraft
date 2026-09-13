@@ -20,16 +20,22 @@ app.use(session({
   cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 } // 1 day
 }));
 
-const usersFile = path.join(__dirname, 'data', 'users.json');
+const IS_VERCEL = process.env.VERCEL === '1' || process.env.VERCEL;
+const DATA_DIR = IS_VERCEL ? '/tmp/data' : path.join(__dirname, 'data');
+const GENERATED_BASE = IS_VERCEL ? '/tmp/generated' : path.join(__dirname, 'generated');
+
+const usersFile = path.join(DATA_DIR, 'users.json');
 
 // Ensure users file exists
 async function initUsers() {
-  await fs.ensureDir(path.join(__dirname, 'data'));
-  if (!await fs.pathExists(usersFile)) {
-    // Create default admin user
-    const hashedAdminPassword = await bcrypt.hash('admin123', 10);
-    await fs.writeJson(usersFile, [{ email: 'admin@scrapcraft.com', password: hashedAdminPassword, role: 'admin' }], { spaces: 2 });
-  }
+  try {
+    await fs.ensureDir(DATA_DIR);
+    if (!await fs.pathExists(usersFile)) {
+      // Create default admin user
+      const hashedAdminPassword = await bcrypt.hash('admin123', 10);
+      await fs.writeJson(usersFile, [{ email: 'admin@scrapcraft.com', password: hashedAdminPassword, role: 'admin' }], { spaces: 2 });
+    }
+  } catch (e) { console.error("initUsers error:", e); }
 }
 initUsers();
 
@@ -98,7 +104,7 @@ app.post('/api/generate', requireAuth, async (req, res) => {
     const cleanName = name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
     const slug = `${cleanName}-${wishType}-${Date.now().toString().slice(-4)}`;
 
-    const generatedDir = path.join(__dirname, 'generated', slug);
+    const generatedDir = path.join(GENERATED_BASE, slug);
     const templateDir = path.join(__dirname, 'template');
 
     await fs.remove(generatedDir);
@@ -124,7 +130,7 @@ app.post('/api/generate', requireAuth, async (req, res) => {
 app.get('/api/download/:slug', async (req, res) => {
   try {
     const { slug } = req.params;
-    const generatedDir = path.join(__dirname, 'generated', slug);
+    const generatedDir = path.join(GENERATED_BASE, slug);
 
     if (!await fs.pathExists(generatedDir)) {
       return res.status(404).json({ error: 'Celebration page not found' });
@@ -149,7 +155,7 @@ app.get('/api/download/:slug', async (req, res) => {
 // API: Get history
 app.get('/api/history', async (req, res) => {
   try {
-    const generatedDir = path.join(__dirname, 'generated');
+    const generatedDir = GENERATED_BASE;
     if (!await fs.pathExists(generatedDir)) return res.json({ history: [] });
 
     const files = await fs.readdir(generatedDir);
@@ -175,6 +181,10 @@ app.get('/api/history', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`✨ Scrapbook Celebration App running at http://localhost:${PORT}`);
-});
+if (!IS_VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`✨ Scrapbook Celebration App running at http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
