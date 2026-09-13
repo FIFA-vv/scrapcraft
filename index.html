@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrapcraft — Aesthetic Celebration Webpage Studio</title>
+    <meta name="description"
+        content="Build and customize stunning, cozy Pinterest-aesthetic celebration webpages with photo uploads, custom 3-choice options, and magic genie wishes.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FDFBF7',
+                        oatmeal: '#F4EFE6',
+                        espresso: '#3D312A',
+                        blush: '#D98880',
+                        sage: '#94A388',
+                        warmgray: 'rgba(61,49,42,0.12)'
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        handwritten: ['Caveat', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #3D312A;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            transition: background-image 0.4s ease, background-color 0.4s ease;
+        }
+
+        .washi-tape {
+            position: absolute;
+            width: 80px;
+            height: 24px;
+            background: rgba(217, 136, 128, 0.45);
+            backdrop-filter: blur(2px);
+            border-left: 2px dashed rgba(255, 255, 255, 0.6);
+            border-right: 2px dashed rgba(255, 255, 255, 0.6);
+            box-shadow: 0 2px 5px rgba(61, 49, 42, 0.06);
+            z-index: 20;
+        }
+
+        .washi-tape-sage {
+            background: rgba(148, 163, 136, 0.5);
+        }
+
+        .washi-tape-gray {
+            background: rgba(61, 49, 42, 0.15);
+        }
+
+        .polaroid {
+            background: #FFFFFF;
+            padding: 10px 10px 20px 10px;
+            box-shadow: 0 10px 30px -5px rgba(61, 49, 42, 0.08), 0 4px 12px rgba(61, 49, 42, 0.03);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+        }
+
+        .polaroid:hover {
+            transform: translateY(-6px) rotate(0deg) scale(1.02) !important;
+            box-shadow: 0 20px 40px -10px rgba(61, 49, 42, 0.15);
+            z-index: 30;
+        }
+
+        @keyframes flameFlicker {
+
+            0%,
+            100% {
+                transform: scale(1) rotate(-1deg);
+                opacity: 0.95;
+            }
+
+            50% {
+                transform: scale(1.15) rotate(1.5deg);
+                opacity: 1;
+                filter: drop-shadow(0 0 10px #f59e0b);
+            }
+        }
+
+        .flame-anim {
+            animation: flameFlicker 1.2s infinite ease-in-out;
+            transform-origin: bottom center;
+        }
+
+        @keyframes genieGlow {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.6));
+                transform: scale(1);
+            }
+
+            50% {
+                filter: drop-shadow(0 0 28px rgba(245, 158, 11, 0.9));
+                transform: scale(1.05);
+            }
+        }
+
+        .genie-lamp-glow {
+            animation: genieGlow 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col justify-between selection:bg-blush/20">
+
+    <!-- TOP NAVIGATION BAR -->
+    <nav
+        class="max-w-7xl mx-auto w-full px-6 py-4 flex items-center justify-between border-b border-warmgray/50 bg-cream/90 backdrop-blur-md sticky top-0 z-40">
+        <a href="index.html" class="flex items-center gap-2.5">
+            <div
+                class="w-9 h-9 rounded-full bg-blush/20 border border-blush/40 flex items-center justify-center text-blush font-serif font-bold text-lg">
+                ✨
+            </div>
+            <span class="font-serif font-bold text-2xl text-espresso tracking-tight">Scrapcraft</span>
+        </a>
+
+        <!-- Navigation Links -->
+        <div class="hidden md:flex items-center gap-6 text-xs sm:text-sm font-medium text-espresso/80">
+            <a href="index.html" class="text-blush font-semibold border-b-2 border-blush pb-0.5">Home & Studio</a>
+            <a href="about.html" class="hover:text-blush transition-colors">About</a>
+            <a href="features.html" class="hover:text-blush transition-colors">Features</a>
+            <a href="how-it-works.html" class="hover:text-blush transition-colors">How It Works</a>
+            <a href="feedback.html" class="hover:text-blush transition-colors">Feedback</a>
+            <a href="contact.html" class="hover:text-blush transition-colors">Contact</a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="flex items-center gap-3">
+            <button id="nav-btn-login" onclick="openAuthModal()"
+                class="px-5 py-2 rounded-full border border-warmgray text-espresso text-xs sm:text-sm font-semibold hover:bg-warmgray/20 transition-all">Login</button>
+            <div id="nav-user-profile" class="hidden items-center gap-3">
+                <span id="nav-user-email" class="text-xs font-semibold text-espresso/70 truncate max-w-[120px]"></span>
+                <span id="nav-admin-badge"
+                    class="hidden px-2 py-0.5 bg-amber-200 text-amber-800 text-[10px] uppercase font-bold rounded-full">Admin</span>
+                <button onclick="logoutUser()" class="text-xs text-blush font-semibold hover:underline">Logout</button>
+            </div>
+            <button onclick="handlePayUnlockClick()"
+                class="px-5 py-2 rounded-full bg-espresso text-cream text-xs sm:text-sm font-medium hover:bg-espresso/90 transition-all shadow-sm flex items-center gap-2">
+                <span>💳 Pay & Unlock (₹99)</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MAIN HOME & CUSTOMIZATION STUDIO -->
+    <main class="max-w-7xl mx-auto px-4 py-8 w-full flex-grow">
+
+        <!-- Hero Header Announcement -->
+        <div
+            class="text-center space-y-3 mb-8 max-w-3xl mx-auto bg-oatmeal/95 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-warmgray shadow-md">
+            <span
+                class="inline-block px-4 py-1.5 bg-blush text-cream text-xs font-bold tracking-widest uppercase rounded-full shadow-xs">
+                ✨ Live Scrapbook Studio
+            </span>
+            <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-espresso leading-tight">
+                Customize & Preview Your Celebration
+            </h1>
+            <p class="font-sans text-xs sm:text-sm text-espresso/80 max-w-xl mx-auto leading-relaxed">
+                Personalize recipient details, upload photos, set 3 receiver choice options, choose wallpapers, and test
+                the magic genie wish!
+            </p>
+        </div>
+
+        <!-- TWO COLUMN LAYOUT: LEFT = EDIT STUDIO FORM, RIGHT = LIVE PREVIEW -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+            <!-- LEFT COLUMN: CUSTOMIZATION STUDIO PANEL (5 COLS) -->
+            <div
+                class="lg:col-span-5 bg-oatmeal/90 backdrop-blur-md border border-warmgray rounded-3xl p-6 space-y-6 shadow-md sticky top-24 max-h-[85vh] overflow-y-auto">
+
+                <div class="flex items-center justify-between border-b border-warmgray pb-3">
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg">✏️</span>
+                        <h2 class="font-serif font-bold text-xl text-espresso">Customization Studio</h2>
+                    </div>
+                    <span class="text-xs px-2.5 py-1 bg-sage/20 text-sage font-semibold rounded-full">Live Editor</span>
+                </div>
+
+                <!-- 1. Recipient Name & Occasion -->
+                <div class="space-y-3">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-blush">1. Basic Info</h3>
+                    <div>
+                        <label class="block text-xs font-semibold text-espresso/70 mb-1">Recipient Name</label>
+                        <input type="text" id="inp-name" value="Sophia" oninput="updateLivePreview()"
+                            class="w-full px-3.5 py-2 rounded-xl bg-cream border border-warmgray text-espresso text-sm outline-none focus:border-blush">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-espresso/70 mb-1">Occasion Type</label>
+                        <select id="inp-occasion" onchange="updateLivePreview()"
+                            class="w-full px-3.5 py-2 rounded-xl bg-cream border border-warmgray text-espresso text-sm outline-none focus:border-blush">
+                            <option value="birthday">Birthday 🎂</option>
+                            <option value="valentine">Valentine’s Day 💌</option>
+                            <option value="anniversary">Anniversary 💍</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 2. Background Wallpaper Picker -->
+                <div class="space-y-3 pt-2 border-t border-warmgray/60">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-blush">2. Background Wallpaper</h3>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button onclick="setBackgroundPattern('gingham')" id="bg-btn-gingham"
+                            class="bg-picker-btn p-2 rounded-xl bg-cream border border-warmgray text-[11px] font-medium text-espresso flex flex-col items-center gap-1 hover:border-blush transition-all">
+                            <span class="w-4 h-4 rounded-full border border-amber-300 bg-amber-100"></span>
+                            <span>Yellow Gingham</span>
+                        </button>
+                        <button onclick="setBackgroundPattern('gingham_pink')" id="bg-btn-gingham_pink"
+                            class="bg-picker-btn p-2 rounded-xl bg-cream border border-warmgray text-[11px] font-medium text-espresso flex flex-col items-center gap-1 hover:border-blush transition-all">
+                            <span class="w-4 h-4 rounded-full border border-pink-300 bg-pink-100"></span>
+                            <span>Pink Gingham</span>
+                        </button>
+                        <button onclick="setBackgroundPattern('gingham_red')" id="bg-btn-gingham_red"
+                            class="bg-picker-btn p-2 rounded-xl bg-cream border border-warmgray text-[11px] font-medium text-espresso flex flex-col items-center gap-1 hover:border-blush transition-all">
+                            <span class="w-4 h-4 rounded-full border border-red-800 bg-red-700"></span>
+                            <span>Red Gingham</span>
+                        </button>
+                        <button onclick="setBackgroundPattern('night_stars')" id="bg-btn-night_stars"
+                            class="bg-picker-btn p-2 rounded-xl bg-cream border border-warmgray text-[11px] font-medium text-espresso flex flex-col items-center gap-1 hover:border-blush transition-all">
+                            <span class="w-4 h-4 rounded-full border border-slate-700 bg-slate-900"></span>
+                            <span>Midnight Stars</span>
+                        </button>
+                        <button onclick="setBackgroundPattern('slate_stars')" id="bg-btn-slate_stars"
+                            class="bg-picker-btn p-2 rounded-xl bg-cream border border-warmgray text-[11px] font-medium text-espresso flex flex-col items-center gap-1 hover:border-blush transition-all">
+                            <span class="w-4 h-4 rounded-full border border-slate-400 bg-slate-500"></span>
+                            <span>Slate Stars</span>
+                        </button>
+                        <button onclick="setBackgroundPattern('kisses')" id="bg-btn-kisses"
+                            class="bg-picker-btn p-2 rounded-xl bg-cream border border-warmgray text-[11px] font-medium text-espresso flex flex-col items-center gap-1 hover:border-blush transition-all">
+                            <span class="w-4 h-4 rounded-full border border-rose-300 bg-rose-100"></span>
+                            <span>Lipstick Kisses</span>
+                        </button>
+                        <button onclick="setBackgroundPattern('stripes')" id="bg-btn-stripes"
+                            class="bg-picker-btn p-2 rounded-xl bg-cream border border-warmgray text-[11px] font-medium text-espresso flex flex-col items-center gap-1 hover:border-blush transition-all">
+                            <span class="w-4 h-4 rounded-full border border-blue-300 bg-blue-100"></span>
+                            <span>Blue Stripes</span>
+                        </button>
+                        <button onclick="setBackgroundPattern('grid')" id="bg-btn-grid"
+                            class="bg-picker-btn p-2 rounded-xl bg-cream border border-warmgray text-[11px] font-medium text-espresso flex flex-col items-center gap-1 hover:border-blush transition-all">
+                            <span class="w-4 h-4 rounded-full border border-stone-300 bg-stone-100"></span>
+                            <span>Graph Grid</span>
+                        </button>
+                        <button onclick="setBackgroundPattern('cream')" id="bg-btn-cream"
+                            class="bg-picker-btn p-2 rounded-xl bg-cream border border-warmgray text-[11px] font-medium text-espresso flex flex-col items-center gap-1 hover:border-blush transition-all border-blush ring-2 ring-blush">
+                            <span class="w-4 h-4 rounded-full border border-warmgray bg-cream"></span>
+                            <span>Soft Cream</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. Photo Uploads & Captions (3 Polaroid Photos) -->
+                <div class="space-y-3 pt-2 border-t border-warmgray/60">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-blush">3. Upload Photos & Captions
+                        </h3>
+                    </div>
+
+                    <!-- Photo 1 Uploader -->
+                    <div class="p-3 bg-cream border border-warmgray rounded-xl space-y-2">
+                        <span class="text-xs font-semibold text-espresso flex items-center gap-1.5">🖼️ Polaroid Photo
+                            1</span>
+                        <div class="flex gap-2">
+                            <label
+                                class="flex-1 px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs font-medium text-espresso cursor-pointer hover:bg-warmgray/20 text-center flex items-center justify-center gap-1">
+                                <span>📁 Upload Image</span>
+                                <input type="file" accept="image/*" class="hidden"
+                                    onchange="handlePhotoUpload(0, this)">
+                            </label>
+                            <input type="text" id="photo-url-0" placeholder="Or paste Image URL..."
+                                oninput="handlePhotoUrlInput(0, this.value)"
+                                class="flex-1 px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs text-espresso outline-none focus:border-blush">
+                        </div>
+                        <input type="text" id="inp-cap-1" value="Summer Beach Memories 🌊" oninput="updateLivePreview()"
+                            placeholder="Caption 1"
+                            class="w-full px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs text-espresso outline-none focus:border-blush">
+                    </div>
+
+                    <!-- Photo 2 Uploader -->
+                    <div class="p-3 bg-cream border border-warmgray rounded-xl space-y-2">
+                        <span class="text-xs font-semibold text-espresso flex items-center gap-1.5">🖼️ Polaroid Photo
+                            2</span>
+                        <div class="flex gap-2">
+                            <label
+                                class="flex-1 px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs font-medium text-espresso cursor-pointer hover:bg-warmgray/20 text-center flex items-center justify-center gap-1">
+                                <span>📁 Upload Image</span>
+                                <input type="file" accept="image/*" class="hidden"
+                                    onchange="handlePhotoUpload(1, this)">
+                            </label>
+                            <input type="text" id="photo-url-1" placeholder="Or paste Image URL..."
+                                oninput="handlePhotoUrlInput(1, this.value)"
+                                class="flex-1 px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs text-espresso outline-none focus:border-blush">
+                        </div>
+                        <input type="text" id="inp-cap-2" value="Celebration & Laughter 🎉"
+                            oninput="updateLivePreview()" placeholder="Caption 2"
+                            class="w-full px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs text-espresso outline-none focus:border-blush">
+                    </div>
+
+                    <!-- Photo 3 Uploader -->
+                    <div class="p-3 bg-cream border border-warmgray rounded-xl space-y-2">
+                        <span class="text-xs font-semibold text-espresso flex items-center gap-1.5">🖼️ Polaroid Photo
+                            3</span>
+                        <div class="flex gap-2">
+                            <label
+                                class="flex-1 px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs font-medium text-espresso cursor-pointer hover:bg-warmgray/20 text-center flex items-center justify-center gap-1">
+                                <span>📁 Upload Image</span>
+                                <input type="file" accept="image/*" class="hidden"
+                                    onchange="handlePhotoUpload(2, this)">
+                            </label>
+                            <input type="text" id="photo-url-2" placeholder="Or paste Image URL..."
+                                oninput="handlePhotoUrlInput(2, this.value)"
+                                class="flex-1 px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs text-espresso outline-none focus:border-blush">
+                        </div>
+                        <input type="text" id="inp-cap-3" value="Golden Hour Sunshine ✨" oninput="updateLivePreview()"
+                            placeholder="Caption 3"
+                            class="w-full px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs text-espresso outline-none focus:border-blush">
+                    </div>
+                </div>
+
+                <!-- NEW 4: CREATOR'S 3 RECEIVER OPTIONS -->
+                <div class="space-y-3 pt-2 border-t border-warmgray/60">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-blush">4. 3 Options for Receiver to
+                            Pick</h3>
+                        <span class="text-[10px] text-espresso/60">Receiver gets to choose 1</span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <div>
+                            <label class="block text-[11px] font-semibold text-espresso/70 mb-0.5">Option A
+                                Title</label>
+                            <input type="text" id="inp-opt-1" value="Romantic Candlelight Dinner 🕯️"
+                                oninput="updateLivePreview()"
+                                class="w-full px-3 py-1.5 bg-cream border border-warmgray text-espresso text-xs rounded-xl outline-none focus:border-blush">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-semibold text-espresso/70 mb-0.5">Option B
+                                Title</label>
+                            <input type="text" id="inp-opt-2" value="Cozy Weekend Getaway Trip 🏔️"
+                                oninput="updateLivePreview()"
+                                class="w-full px-3 py-1.5 bg-cream border border-warmgray text-espresso text-xs rounded-xl outline-none focus:border-blush">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-semibold text-espresso/70 mb-0.5">Option C
+                                Title</label>
+                            <input type="text" id="inp-opt-3" value="Special Gift Shopping Spree 🎁"
+                                oninput="updateLivePreview()"
+                                class="w-full px-3 py-1.5 bg-cream border border-warmgray text-espresso text-xs rounded-xl outline-none focus:border-blush">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NEW 5: LIFE HIGHLIGHTS TIMELINE -->
+                <div class="space-y-3 pt-2 border-t border-warmgray/60">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-blush">5. Life Highlights Timeline
+                        </h3>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="p-3 bg-cream border border-warmgray rounded-xl space-y-2">
+                            <span class="text-xs font-semibold text-espresso flex items-center gap-1.5">⏳ Milestone
+                                1</span>
+                            <div class="flex gap-2">
+                                <input type="text" id="inp-tml-date-1" value="Aug 2023" oninput="updateLivePreview()"
+                                    placeholder="Date (e.g. 2023)"
+                                    class="w-1/3 px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs text-espresso outline-none focus:border-blush">
+                                <input type="text" id="inp-tml-title-1" value="Our First Meeting"
+                                    oninput="updateLivePreview()" placeholder="Title"
+                                    class="w-2/3 px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs text-espresso outline-none focus:border-blush">
+                            </div>
+                            <input type="text" id="inp-tml-desc-1" value="That rainy evening at the coffee shop..."
+                                oninput="updateLivePreview()" placeholder="Short description..."
+                                class="w-full px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs text-espresso outline-none focus:border-blush">
+                            <input type="text" id="inp-tml-img-1" placeholder="Photo URL (Optional)"
+                                value="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&q=80"
+                                oninput="updateLivePreview()"
+                                class="w-full px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs text-espresso outline-none focus:border-blush">
+                        </div>
+
+                        <div class="p-3 bg-cream border border-warmgray rounded-xl space-y-2">
+                            <span class="text-xs font-semibold text-espresso flex items-center gap-1.5">⏳ Milestone
+                                2</span>
+                            <div class="flex gap-2">
+                                <input type="text" id="inp-tml-date-2" value="Dec 2024" oninput="updateLivePreview()"
+                                    placeholder="Date (e.g. 2024)"
+                                    class="w-1/3 px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs text-espresso outline-none focus:border-blush">
+                                <input type="text" id="inp-tml-title-2" value="First Trip Together"
+                                    oninput="updateLivePreview()" placeholder="Title"
+                                    class="w-2/3 px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs text-espresso outline-none focus:border-blush">
+                            </div>
+                            <input type="text" id="inp-tml-desc-2" value="Exploring the mountains in the snow."
+                                oninput="updateLivePreview()" placeholder="Short description..."
+                                class="w-full px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs text-espresso outline-none focus:border-blush">
+                            <input type="text" id="inp-tml-img-2" placeholder="Photo URL (Optional)"
+                                value="https://images.unsplash.com/photo-1522881110034-78bebc158bb3?w=800&q=80"
+                                oninput="updateLivePreview()"
+                                class="w-full px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs text-espresso outline-none focus:border-blush">
+                        </div>
+
+                        <div class="p-3 bg-cream border border-warmgray rounded-xl space-y-2">
+                            <span class="text-xs font-semibold text-espresso flex items-center gap-1.5">⏳ Milestone
+                                3</span>
+                            <div class="flex gap-2">
+                                <input type="text" id="inp-tml-date-3" value="Today!" oninput="updateLivePreview()"
+                                    placeholder="Date"
+                                    class="w-1/3 px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs text-espresso outline-none focus:border-blush">
+                                <input type="text" id="inp-tml-title-3" value="A Beautiful Future"
+                                    oninput="updateLivePreview()" placeholder="Title"
+                                    class="w-2/3 px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs text-espresso outline-none focus:border-blush">
+                            </div>
+                            <input type="text" id="inp-tml-desc-3" value="Here's to a lifetime of adventures together."
+                                oninput="updateLivePreview()" placeholder="Short description..."
+                                class="w-full px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs text-espresso outline-none focus:border-blush">
+                            <input type="text" id="inp-tml-img-3" placeholder="Photo URL (Optional)"
+                                value="https://images.unsplash.com/photo-1529156069898-49953eb1b5b6?w=800&q=80"
+                                oninput="updateLivePreview()"
+                                class="w-full px-3 py-1.5 bg-oatmeal border border-warmgray rounded-lg text-xs text-espresso outline-none focus:border-blush">
+                        </div>
+                    </div>
+
+                    <div class="p-3 bg-oatmeal border border-warmgray rounded-xl space-y-2 mt-2">
+                        <span class="text-xs font-semibold text-espresso flex items-center gap-1.5">🎥 Video Memory
+                            (Optional)</span>
+                        <input type="text" id="inp-tml-video" placeholder="Video MP4 URL or YouTube Embed URL" value=""
+                            oninput="updateLivePreview()"
+                            class="w-full px-3 py-1.5 bg-cream border border-warmgray rounded-lg text-xs text-espresso outline-none focus:border-blush">
+                        <div class="text-[10px] text-espresso/60 text-center">- OR -</div>
+                        <input type="file" accept="video/mp4,video/webm" onchange="handleVideoUpload(this)"
+                            class="w-full text-[10px] text-espresso/70 file:mr-2 file:py-1 file:px-2 file:rounded-full file:border-0 file:text-[10px] file:font-semibold file:bg-blush file:text-cream hover:file:bg-blush/90 cursor-pointer">
+                    </div>
+                </div>
+
+                <!-- 6. Handwritten Letter Message -->
+                <div class="space-y-2 pt-2 border-t border-warmgray/60">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-blush">6. Handwritten Letter</h3>
+                    <textarea id="inp-letter" rows="3" oninput="updateLivePreview()"
+                        class="w-full px-3 py-2 rounded-xl bg-cream border border-warmgray text-espresso text-sm outline-none focus:border-blush font-handwritten text-lg">Dearest Sophia, On this beautiful day, I want to remind you how deeply loved and cherished you are. Thank you for bringing so much warmth, laughter, and light into every single day!</textarea>
+                </div>
+
+                <!-- Submit & Pay Button -->
+                <div class="pt-3">
+                    <button onclick="handlePayUnlockClick()"
+                        class="w-full py-3.5 rounded-full bg-blush text-cream font-semibold text-sm hover:bg-blush/90 shadow-md flex items-center justify-center gap-2 active:scale-95 transition-all">
+                        <span>💳 Proceed to Pay & Unlock Page (₹99)</span>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: LIVE SCRAPBOOK PREVIEW PANEL (7 COLS) -->
+            <div class="lg:col-span-7 space-y-10">
+
+                <!-- Live Header Banner Preview -->
+                <div
+                    class="text-center bg-oatmeal/95 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-warmgray shadow-md space-y-3">
+                    <span
+                        class="inline-block px-3 py-1 rounded-full bg-blush/15 text-blush text-xs font-semibold tracking-widest uppercase"
+                        id="preview-badge">
+                        ✨ Special Birthday Celebration
+                    </span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-espresso leading-tight"
+                        id="preview-main-title">
+                        Happy Birthday, <span class="italic text-blush" id="preview-recipient-name">Sophia</span>
+                    </h2>
+                    <p class="font-sans text-xs sm:text-sm text-espresso/80">
+                        A warm digital keepsake filled with Polaroid memories, a sweet secret wish cake, and a
+                        handwritten letter.
+                    </p>
+                </div>
+
+                <!-- Live Polaroid Scrapbook Grid -->
+                <div class="space-y-4">
+                    <div
+                        class="flex items-center justify-between bg-oatmeal/95 backdrop-blur-md px-6 py-3 rounded-2xl border border-warmgray shadow-xs">
+                        <h3 class="font-serif text-xl font-bold text-espresso">Live Memory Snapshots</h3>
+                        <span
+                            class="text-xs px-2.5 py-1 bg-blush/15 text-blush font-bold uppercase tracking-wider rounded-full">Real-Time
+                            Preview</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Live Polaroid 1 -->
+                        <div class="polaroid -rotate-2 rounded-sm border border-warmgray">
+                            <div class="washi-tape -top-3 left-1/2 -translate-x-1/2 rotate-1"></div>
+                            <div class="aspect-[4/3] bg-oatmeal overflow-hidden rounded-xs mb-2.5">
+                                <img id="live-img-0"
+                                    src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=800&q=80"
+                                    alt="Photo 1" class="w-full h-full object-cover">
+                            </div>
+                            <p class="font-handwritten text-lg text-center text-espresso/90 font-semibold leading-tight"
+                                id="live-cap-0">Summer Beach Memories 🌊</p>
+                        </div>
+
+                        <!-- Live Polaroid 2 -->
+                        <div class="polaroid rotate-3 rounded-sm border border-warmgray sm:mt-4">
+                            <div class="washi-tape washi-tape-sage -top-3 right-6 -rotate-2"></div>
+                            <div class="aspect-[4/3] bg-oatmeal overflow-hidden rounded-xs mb-2.5">
+                                <img id="live-img-1"
+                                    src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80"
+                                    alt="Photo 2" class="w-full h-full object-cover">
+                            </div>
+                            <p class="font-handwritten text-lg text-center text-espresso/90 font-semibold leading-tight"
+                                id="live-cap-1">Celebration & Laughter 🎉</p>
+                        </div>
+
+                        <!-- Live Polaroid 3 -->
+                        <div class="polaroid -rotate-1 rounded-sm border border-warmgray sm:col-span-2">
+                            <div class="washi-tape washi-tape-gray -top-3 left-6 rotate-3"></div>
+                            <div class="aspect-[4/3] bg-oatmeal overflow-hidden rounded-xs mb-2.5">
+                                <img id="live-img-2"
+                                    src="https://images.unsplash.com/photo-1530103862676-de8892b12a15?auto=format&fit=crop&w=800&q=80"
+                                    alt="Photo 3" class="w-full h-full object-cover">
+                            </div>
+                            <p class="font-handwritten text-lg text-center text-espresso/90 font-semibold leading-tight"
+                                id="live-cap-2">Golden Hour Sunshine ✨</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NEW LIVE PREVIEW: CREATOR'S 3 OPTIONS -->
+                <div class="bg-oatmeal/90 border border-warmgray rounded-3xl p-6 space-y-4 shadow-xs text-center">
+                    <span class="text-xs uppercase tracking-widest font-semibold text-blush">Receiver Interactive
+                        Choice</span>
+                    <h3 class="font-serif text-2xl font-bold text-espresso">3 Creator Options Preview</h3>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
+                        <div class="p-3 bg-cream border border-warmgray rounded-xl space-y-1">
+                            <span class="text-xs font-bold text-blush">Option A</span>
+                            <p class="text-xs font-semibold text-espresso" id="live-opt-1">Romantic Candlelight Dinner
+                                🕯️</p>
+                        </div>
+                        <div class="p-3 bg-cream border border-warmgray rounded-xl space-y-1">
+                            <span class="text-xs font-bold text-sage">Option B</span>
+                            <p class="text-xs font-semibold text-espresso" id="live-opt-2">Cozy Weekend Getaway Trip 🏔️
+                            </p>
+                        </div>
+                        <div class="p-3 bg-cream border border-warmgray rounded-xl space-y-1">
+                            <span class="text-xs font-bold text-amber-700">Option C</span>
+                            <p class="text-xs font-semibold text-espresso" id="live-opt-3">Special Gift Shopping Spree
+                                🎁</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NEW LIVE PREVIEW: MEMORY TIMELINE -->
+                <div class="bg-oatmeal/90 border border-warmgray rounded-3xl p-6 shadow-xs relative">
+                    <div class="text-center mb-6">
+                        <h3 class="font-serif text-2xl font-bold text-espresso">Life Highlights</h3>
+                        <span class="text-xs text-blush font-semibold uppercase tracking-wider">Memory Timeline</span>
+                    </div>
+
+                    <div class="relative pl-6 space-y-6">
+                        <!-- Vertical line -->
+                        <div class="absolute left-[11px] top-2 bottom-2 w-0.5 bg-warmgray/50"></div>
+
+                        <!-- Milestone 1 Preview -->
+                        <div class="relative text-left flex gap-3">
+                            <div
+                                class="absolute -left-[30px] top-1 w-4 h-4 rounded-full bg-cream border-2 border-blush shadow-xs z-10">
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-baseline gap-2 mb-1">
+                                    <span class="text-[10px] font-bold text-blush" id="live-tml-date-1">Aug 2023</span>
+                                    <h4 class="font-serif text-base font-bold text-espresso leading-none"
+                                        id="live-tml-title-1">Our First Meeting</h4>
+                                </div>
+                                <p class="text-[11px] font-medium text-espresso/70 mb-2" id="live-tml-desc-1">That rainy
+                                    evening at the coffee shop...</p>
+                                <img id="live-tml-img-1"
+                                    src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&q=80"
+                                    class="w-full h-auto aspect-video object-cover rounded-xl border border-warmgray shadow-sm">
+                            </div>
+                        </div>
+
+                        <!-- Milestone 2 Preview -->
+                        <div class="relative text-left flex gap-3">
+                            <div
+                                class="absolute -left-[30px] top-1 w-4 h-4 rounded-full bg-cream border-2 border-sage shadow-xs z-10">
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-baseline gap-2 mb-1">
+                                    <span class="text-[10px] font-bold text-sage" id="live-tml-date-2">Dec 2024</span>
+                                    <h4 class="font-serif text-base font-bold text-espresso leading-none"
+                                        id="live-tml-title-2">First Trip Together</h4>
+                                </div>
+                                <p class="text-[11px] font-medium text-espresso/70 mb-2" id="live-tml-desc-2">Exploring
+                                    the mountains in the snow.</p>
+                                <img id="live-tml-img-2"
+                                    src="https://images.unsplash.com/photo-1522881110034-78bebc158bb3?w=800&q=80"
+                                    class="w-full h-auto aspect-video object-cover rounded-xl border border-warmgray shadow-sm">
+                            </div>
+                        </div>
+
+                        <!-- Milestone 3 Preview -->
+                        <div class="relative text-left flex gap-3">
+                            <div
+                                class="absolute -left-[30px] top-1 w-4 h-4 rounded-full bg-cream border-2 border-amber-600 shadow-xs z-10">
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-baseline gap-2 mb-1">
+                                    <span class="text-[10px] font-bold text-amber-600"
+                                        id="live-tml-date-3">Today!</span>
+                                    <h4 class="font-serif text-base font-bold text-espresso leading-none"
+                                        id="live-tml-title-3">A Beautiful Future</h4>
+                                </div>
+                                <p class="text-[11px] font-medium text-espresso/70 mb-2" id="live-tml-desc-3">Here's to
+                                    a lifetime of adventures together.</p>
+                                <img id="live-tml-img-3"
+                                    src="https://images.unsplash.com/photo-1529156069898-49953eb1b5b6?w=800&q=80"
+                                    class="w-full h-auto aspect-video object-cover rounded-xl border border-warmgray shadow-sm">
+                            </div>
+                        </div>
+
+                        <!-- Video Memory Preview -->
+                        <div class="relative text-left flex gap-3 mt-4 hidden" id="live-tml-video-cnt">
+                            <div
+                                class="absolute -left-[30px] top-1 w-4 h-4 rounded-full bg-cream border-2 border-espresso/50 shadow-xs z-10">
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-baseline gap-2 mb-1">
+                                    <h4 class="font-serif text-base font-bold text-espresso/80 leading-none">🎥 Video
+                                        Memory</h4>
+                                </div>
+                                <div
+                                    class="aspect-video bg-warmgray/50 rounded-xl border border-warmgray flex flex-col items-center justify-center">
+                                    <span class="text-2xl mb-1">▶️</span>
+                                    <span class="text-[10px] uppercase font-bold text-espresso/70 tracking-wider">Video
+                                        Attached</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- NEW LIVE PREVIEW: MAGICAL GENIE LAMP -->
+                <div class="bg-oatmeal/90 border border-warmgray rounded-3xl p-6 space-y-4 shadow-xs text-center">
+                    <span class="text-xs uppercase tracking-widest font-semibold text-amber-700">🧞‍♂️ Magic Genie Wish
+                        Feature</span>
+                    <h3 class="font-serif text-2xl font-bold text-espresso">Secret Wish Genie Lamp</h3>
+
+                    <div
+                        class="p-4 bg-cream border border-warmgray rounded-2xl flex flex-col items-center justify-center space-y-2">
+                        <div
+                            class="w-20 h-14 bg-gradient-to-r from-amber-400 to-yellow-500 rounded-full border border-amber-600 flex items-center justify-center genie-lamp-glow">
+                            <span class="text-2xl">🪔</span>
+                        </div>
+                        <p class="text-xs text-espresso/70">The receiver types a wish & rubs the lamp to reveal the
+                            Magic Genie and grant their wish!</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- DIRECT QR CODE PAYMENT MODAL -->
+    <div id="payment-modal"
+        class="fixed inset-0 z-50 bg-espresso/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div
+            class="bg-cream border border-warmgray rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-5 text-center shadow-2xl relative">
+
+            <button onclick="closePaymentModal()"
+                class="absolute top-4 right-4 w-8 h-8 rounded-full bg-oatmeal border border-warmgray text-espresso flex items-center justify-center font-bold hover:bg-warmgray/20">&times;</button>
+
+            <div class="space-y-1">
+                <span class="text-xs uppercase tracking-widest font-semibold text-blush">Scan to Pay</span>
+                <h3 class="font-serif font-bold text-2xl text-espresso">Direct UPI Payment</h3>
+                <p class="text-xs text-espresso/70">Scan the QR code below using GPay, PhonePe, or Paytm</p>
+            </div>
+
+            <!-- QR Code Image & Details -->
+            <div
+                class="p-4 bg-oatmeal border border-warmgray rounded-2xl flex flex-col items-center justify-center space-y-3">
+                <div
+                    class="w-44 h-44 bg-white p-2 border border-warmgray rounded-xl shadow-xs flex items-center justify-center">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi%3A%2F%2Fpay%3Fpa%3Dscrapcraft%40upi%26pn%3DScrapcraft%26am%3D99%26cu%3DINR"
+                        alt="UPI QR Code" class="w-full h-full object-contain">
+                </div>
+
+                <div class="text-center">
+                    <div class="text-xs font-semibold text-espresso">UPI ID: <span
+                            class="font-mono text-blush">scrapcraft@upi</span></div>
+                    <div class="text-xs text-espresso/60 mt-0.5">Amount: <strong class="text-espresso">₹99 INR</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transaction UTR Reference Input -->
+            <div class="text-left space-y-1.5">
+                <label class="block text-xs font-semibold uppercase tracking-wider text-espresso/70">Transaction UTR /
+                    Ref No.</label>
+                <input type="text" id="inp-utr" placeholder="e.g. 324156789012"
+                    class="w-full px-4 py-2.5 rounded-xl bg-oatmeal border border-warmgray text-espresso text-sm outline-none focus:border-blush font-mono">
+                <p class="text-[10px] text-espresso/50">Enter the 12-digit UPI reference number from your payment app.
+                </p>
+            </div>
+
+            <div class="pt-2 flex gap-3">
+                <button onclick="closePaymentModal()"
+                    class="flex-1 py-2.5 rounded-full bg-oatmeal border border-warmgray text-espresso font-medium text-xs hover:bg-warmgray/20">Back</button>
+                <button onclick="confirmPaymentAndGenerate()" id="btn-confirm-pay"
+                    class="flex-1 py-2.5 rounded-full bg-sage text-cream font-medium text-xs hover:bg-sage/90 shadow-md">✅
+                    Confirm & Unlock</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SHARE SUCCESS MODAL -->
+    <div id="share-modal"
+        class="fixed inset-0 z-50 bg-espresso/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div
+            class="bg-cream border border-warmgray rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-5 text-center shadow-2xl">
+            <div
+                class="w-16 h-16 rounded-full bg-sage/20 border border-sage/40 flex items-center justify-center text-sage text-2xl mx-auto">
+                🎉
+            </div>
+            <h3 class="font-serif font-bold text-2xl text-espresso">Celebration Unlocked!</h3>
+            <p class="text-xs sm:text-sm text-espresso/70">Payment verified! Your personalized Pinterest scrapbook page
+                is live with options & Genie wish.</p>
+
+            <div class="p-3 bg-oatmeal border border-warmgray rounded-xl font-mono text-xs text-blush break-all"
+                id="generated-url">
+                http://localhost:3000/generated/sample/index.html
+            </div>
+
+            <div class="flex flex-col gap-2.5">
+                <div class="flex gap-2">
+                    <button onclick="copyGeneratedUrl()"
+                        class="flex-1 py-2.5 rounded-full bg-oatmeal border border-warmgray text-espresso font-medium text-xs hover:bg-warmgray/20">📋
+                        Copy Link</button>
+                    <a id="btn-open-generated" href="#" target="_blank"
+                        class="flex-1 py-2.5 rounded-full bg-blush text-cream font-medium text-xs hover:bg-blush/90 shadow-md flex items-center justify-center">🚀
+                        Open Webpage</a>
+                </div>
+
+                <a id="btn-download-zip" href="#" download
+                    class="w-full py-2.5 rounded-full bg-sage text-cream font-medium text-xs hover:bg-sage/90 shadow-sm flex items-center justify-center gap-1.5">
+                    📦 Download Offline ZIP Bundle
+                </a>
+            </div>
+
+            <button onclick="closeShareModal()"
+                class="text-xs text-espresso/50 hover:underline pt-1 block mx-auto">Close</button>
+        </div>
+    </div>
+    </div>
+
+    <!-- AUTHENTICATION MODAL -->
+    <div id="auth-modal"
+        class="fixed inset-0 z-50 bg-espresso/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div
+            class="bg-cream border border-warmgray rounded-3xl max-w-sm w-full p-6 sm:p-8 space-y-4 shadow-2xl relative">
+            <button onclick="closeAuthModal()"
+                class="absolute top-4 right-4 text-xs font-bold text-espresso/50 hover:text-blush">X</button>
+            <div class="text-center">
+                <h3 class="font-serif text-3xl font-bold text-espresso" id="auth-title">Welcome Back</h3>
+                <p class="text-xs text-espresso/60 mt-1" id="auth-subtitle">Login to generate your celebration webpage.
+                </p>
+            </div>
+
+            <div class="space-y-3 pt-2">
+                <div>
+                    <label class="block text-[11px] font-semibold text-espresso/70 mb-0.5">Email Address</label>
+                    <input type="email" id="auth-email" placeholder="you@example.com"
+                        class="w-full px-4 py-2.5 bg-oatmeal border border-warmgray rounded-xl text-sm outline-none focus:border-blush">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-semibold text-espresso/70 mb-0.5">Password</label>
+                    <input type="password" id="auth-password" placeholder="••••••••"
+                        class="w-full px-4 py-2.5 bg-oatmeal border border-warmgray rounded-xl text-sm outline-none focus:border-blush">
+                </div>
+            </div>
+
+            <div class="pt-4 space-y-2">
+                <button onclick="submitAuth()" id="btn-auth-submit"
+                    class="w-full py-2.5 rounded-full bg-espresso text-cream font-medium text-sm hover:bg-espresso/90 shadow-sm">Login</button>
+                <div class="text-center text-xs text-espresso/70">
+                    <span id="auth-switch-text">Don't have an account?</span>
+                    <button onclick="toggleAuthMode()" class="text-blush font-semibold hover:underline"
+                        id="auth-switch-btn">Sign up</button>
+                </div>
+            </div>
+            <p id="auth-error-msg" class="text-xs text-red-500 font-semibold text-center hidden"></p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="py-8 text-center text-xs text-espresso/50 border-t border-warmgray/50 bg-oatmeal/30 space-y-2 mt-12">
+        <div class="flex justify-center gap-6 text-espresso/70 font-medium">
+            <a href="index.html" class="hover:text-blush">Home & Studio</a>
+            <a href="about.html" class="hover:text-blush">About</a>
+            <a href="features.html" class="hover:text-blush">Features</a>
+            <a href="how-it-works.html" class="hover:text-blush">How It Works</a>
+            <a href="feedback.html" class="hover:text-blush">Feedback</a>
+            <a href="contact.html" class="hover:text-blush">Contact</a>
+        </div>
+        <p>© 2026 Scrapcraft — Crafted with warm thoughts & Pinterest aesthetic aesthetics.</p>
+    </footer>
+
+    <script>
+        let selectedBgPattern = 'cream';
+        let uploadedVideoUrl = null;
+        let photoDataUrls = [
+            "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1530103862676-de8892b12a15?auto=format&fit=crop&w=800&q=80"
+        ];
+
+        function setBackgroundPattern(pattern) {
+            selectedBgPattern = pattern;
+            const body = document.body;
+            const bgMap = {
+                gingham: "url('/assets/backgrounds/bg_gingham.jpg')",
+                gingham_pink: "url('/assets/backgrounds/bg_gingham_pink.jpg')",
+                gingham_red: "url('/assets/backgrounds/bg_gingham_red.jpg')",
+                night_stars: "url('/assets/backgrounds/bg_night_stars.jpg')",
+                slate_stars: "url('/assets/backgrounds/bg_slate_stars.jpg')",
+                stripes: "url('/assets/backgrounds/bg_stripes.jpg')",
+                grid: "url('/assets/backgrounds/bg_grid.jpg')",
+                kisses: "url('/assets/backgrounds/bg_kisses.jpg')",
+                marble: "url('/assets/backgrounds/bg_marble.jpg')"
+            };
+
+            if (bgMap[pattern]) {
+                body.style.backgroundImage = bgMap[pattern];
+                body.style.backgroundRepeat = (pattern === 'night_stars' || pattern === 'slate_stars' || pattern === 'marble') ? "no-repeat" : "repeat";
+                body.style.backgroundSize = (pattern === 'night_stars' || pattern === 'slate_stars' || pattern === 'marble') ? "cover" : "220px auto";
+                body.style.backgroundAttachment = "fixed";
+            } else {
+                body.style.backgroundImage = "none";
+                body.style.backgroundColor = "#FDFBF7";
+            }
+
+            document.querySelectorAll('.bg-picker-btn').forEach(btn => {
+                btn.classList.remove('border-blush', 'ring-2', 'ring-blush');
+            });
+            const activeBtn = document.getElementById(`bg-btn-${pattern}`);
+            if (activeBtn) activeBtn.classList.add('border-blush', 'ring-2', 'ring-blush');
+        }
+
+        function handlePhotoUpload(index, fileInput) {
+            const file = fileInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    photoDataUrls[index] = e.target.result;
+                    document.getElementById(`live-img-${index}`).src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function handlePhotoUrlInput(index, urlVal) {
+            if (urlVal.trim()) {
+                photoDataUrls[index] = urlVal.trim();
+                document.getElementById(`live-img-${index}`).src = urlVal.trim();
+            }
+        }
+
+        function handleVideoUpload(fileInput) {
+            const file = fileInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    uploadedVideoUrl = e.target.result;
+                    updateLivePreview();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function updateLivePreview() {
+            const name = document.getElementById('inp-name').value.trim() || 'Sophia';
+            const occ = document.getElementById('inp-occasion').value;
+            const occBadgeStr = occ === 'valentine' ? '💌 Special Valentine’s Celebration' : occ === 'anniversary' ? '💍 Special Anniversary Celebration' : '✨ Special Birthday Celebration';
+            const titlePrefix = occ === 'valentine' ? 'Happy Valentine’s Day,' : occ === 'anniversary' ? 'Happy Anniversary,' : 'Happy Birthday,';
+
+            document.getElementById('preview-recipient-name').innerText = name;
+            document.getElementById('preview-badge').innerText = occBadgeStr;
+            document.getElementById('preview-main-title').innerHTML = `${titlePrefix} <span class="italic text-blush">${name}</span>`;
+
+            document.getElementById('live-cap-0').innerText = document.getElementById('inp-cap-1').value.trim();
+            document.getElementById('live-cap-1').innerText = document.getElementById('inp-cap-2').value.trim();
+            document.getElementById('live-cap-2').innerText = document.getElementById('inp-cap-3').value.trim();
+
+            document.getElementById('live-opt-1').innerText = document.getElementById('inp-opt-1').value.trim();
+            document.getElementById('live-opt-2').innerText = document.getElementById('inp-opt-2').value.trim();
+            document.getElementById('live-opt-3').innerText = document.getElementById('inp-opt-3').value.trim();
+
+            document.getElementById('live-tml-date-1').innerText = document.getElementById('inp-tml-date-1').value.trim();
+            document.getElementById('live-tml-title-1').innerText = document.getElementById('inp-tml-title-1').value.trim();
+            document.getElementById('live-tml-desc-1').innerText = document.getElementById('inp-tml-desc-1').value.trim();
+            const img1 = document.getElementById('inp-tml-img-1').value.trim();
+            document.getElementById('live-tml-img-1').style.display = img1 ? 'block' : 'none';
+            if (img1) document.getElementById('live-tml-img-1').src = img1;
+
+            document.getElementById('live-tml-date-2').innerText = document.getElementById('inp-tml-date-2').value.trim();
+            document.getElementById('live-tml-title-2').innerText = document.getElementById('inp-tml-title-2').value.trim();
+            document.getElementById('live-tml-desc-2').innerText = document.getElementById('inp-tml-desc-2').value.trim();
+            const img2 = document.getElementById('inp-tml-img-2').value.trim();
+            document.getElementById('live-tml-img-2').style.display = img2 ? 'block' : 'none';
+            if (img2) document.getElementById('live-tml-img-2').src = img2;
+
+            document.getElementById('live-tml-date-3').innerText = document.getElementById('inp-tml-date-3').value.trim();
+            document.getElementById('live-tml-title-3').innerText = document.getElementById('inp-tml-title-3').value.trim();
+            document.getElementById('live-tml-desc-3').innerText = document.getElementById('inp-tml-desc-3').value.trim();
+            const img3 = document.getElementById('inp-tml-img-3').value.trim();
+            document.getElementById('live-tml-img-3').style.display = img3 ? 'block' : 'none';
+            if (img3) document.getElementById('live-tml-img-3').src = img3;
+
+            const video = uploadedVideoUrl || document.getElementById('inp-tml-video').value.trim();
+            document.getElementById('live-tml-video-cnt').style.display = video ? 'flex' : 'none';
+        }
+
+        let isLoginMode = true;
+        let currentUser = null;
+
+        async function checkAuthStatus() {
+            try {
+                const res = await fetch('/api/auth/me');
+                const data = await res.json();
+                if (data.loggedIn) {
+                    currentUser = data.user;
+                    document.getElementById('nav-btn-login').classList.add('hidden');
+                    document.getElementById('nav-user-profile').classList.remove('hidden');
+                    document.getElementById('nav-user-profile').classList.add('flex');
+                    document.getElementById('nav-user-email').innerText = currentUser.email;
+                    if (currentUser.role === 'admin') {
+                        document.getElementById('nav-admin-badge').classList.remove('hidden');
+                    }
+                } else {
+                    currentUser = null;
+                    document.getElementById('nav-btn-login').classList.remove('hidden');
+                    document.getElementById('nav-user-profile').classList.add('hidden');
+                    document.getElementById('nav-user-profile').classList.remove('flex');
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
+        checkAuthStatus();
+
+        function openAuthModal() {
+            document.getElementById('auth-modal').classList.remove('hidden');
+        }
+        function closeAuthModal() {
+            document.getElementById('auth-modal').classList.add('hidden');
+            document.getElementById('auth-error-msg').classList.add('hidden');
+        }
+        function toggleAuthMode() {
+            isLoginMode = !isLoginMode;
+            document.getElementById('auth-title').innerText = isLoginMode ? 'Welcome Back' : 'Create Account';
+            document.getElementById('auth-subtitle').innerText = isLoginMode ? 'Login to generate your celebration webpage.' : 'Sign up to start creating your webpage.';
+            document.getElementById('btn-auth-submit').innerText = isLoginMode ? 'Login' : 'Sign Up';
+            document.getElementById('auth-switch-text').innerText = isLoginMode ? "Don't have an account?" : "Already have an account?";
+            document.getElementById('auth-switch-btn').innerText = isLoginMode ? 'Sign up' : 'Login';
+        }
+
+        async function submitAuth() {
+            const email = document.getElementById('auth-email').value.trim();
+            const password = document.getElementById('auth-password').value;
+            const errorMsg = document.getElementById('auth-error-msg');
+            errorMsg.classList.add('hidden');
+
+            const endpoint = isLoginMode ? '/api/auth/login' : '/api/auth/register';
+            try {
+                const res = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    closeAuthModal();
+                    checkAuthStatus();
+                } else {
+                    errorMsg.innerText = data.error || 'Authentication failed';
+                    errorMsg.classList.remove('hidden');
+                }
+            } catch (err) {
+                errorMsg.innerText = 'Server error occurred.';
+                errorMsg.classList.remove('hidden');
+            }
+        }
+
+        async function logoutUser() {
+            await fetch('/api/auth/logout', { method: 'POST' });
+            checkAuthStatus();
+        }
+
+        function handlePayUnlockClick() {
+            if (!currentUser) {
+                openAuthModal();
+            } else {
+                openPaymentModal();
+            }
+        }
+
+        function openPaymentModal() {
+            document.getElementById('payment-modal').classList.remove('hidden');
+        }
+        function closePaymentModal() {
+            document.getElementById('payment-modal').classList.add('hidden');
+        }
+        function closeShareModal() {
+            document.getElementById('share-modal').classList.add('hidden');
+        }
+
+        async function confirmPaymentAndGenerate() {
+            const utr = document.getElementById('inp-utr').value.trim();
+            const btn = document.getElementById('btn-confirm-pay');
+
+            btn.disabled = true;
+            btn.innerText = '⌛ Verifying & Generating...';
+
+            const payload = {
+                wishType: document.getElementById('inp-occasion').value,
+                backgroundPattern: selectedBgPattern,
+                paymentRef: utr || 'DIRECT_QR_PAYMENT',
+                recipient: {
+                    name: document.getElementById('inp-name').value.trim() || 'Sophia'
+                },
+                photos: photoDataUrls,
+                captions: [
+                    document.getElementById('inp-cap-1').value.trim(),
+                    document.getElementById('inp-cap-2').value.trim(),
+                    document.getElementById('inp-cap-3').value.trim()
+                ],
+                creatorOptions: [
+                    document.getElementById('inp-opt-1').value.trim(),
+                    document.getElementById('inp-opt-2').value.trim(),
+                    document.getElementById('inp-opt-3').value.trim()
+                ],
+                timeline: [
+                    {
+                        date: document.getElementById('inp-tml-date-1').value.trim(),
+                        title: document.getElementById('inp-tml-title-1').value.trim(),
+                        description: document.getElementById('inp-tml-desc-1').value.trim(),
+                        img: document.getElementById('inp-tml-img-1').value.trim()
+                    },
+                    {
+                        date: document.getElementById('inp-tml-date-2').value.trim(),
+                        title: document.getElementById('inp-tml-title-2').value.trim(),
+                        description: document.getElementById('inp-tml-desc-2').value.trim(),
+                        img: document.getElementById('inp-tml-img-2').value.trim()
+                    },
+                    {
+                        date: document.getElementById('inp-tml-date-3').value.trim(),
+                        title: document.getElementById('inp-tml-title-3').value.trim(),
+                        description: document.getElementById('inp-tml-desc-3').value.trim(),
+                        img: document.getElementById('inp-tml-img-3').value.trim()
+                    }
+                ],
+                timelineVideo: uploadedVideoUrl || document.getElementById('inp-tml-video').value.trim(),
+                letter: {
+                    message: document.getElementById('inp-letter').value.trim()
+                }
+            };
+
+            try {
+                const res = await fetch('/api/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (data.success) {
+                    closePaymentModal();
+                    document.getElementById('generated-url').innerText = data.url;
+                    document.getElementById('btn-open-generated').href = data.url;
+                    document.getElementById('btn-download-zip').href = data.downloadUrl || `/api/download/${data.slug}`;
+                    document.getElementById('share-modal').classList.remove('hidden');
+                } else {
+                    alert('Error: ' + (data.error || 'Failed to generate page'));
+                }
+            } catch (err) {
+                alert('Make sure backend server is running');
+            } finally {
+                btn.disabled = false;
+                btn.innerText = '✅ Confirm & Unlock';
+            }
+        }
+
+        function copyGeneratedUrl() {
+            const urlText = document.getElementById('generated-url').innerText;
+            navigator.clipboard.writeText(urlText);
+            alert('Link copied to clipboard!');
+        }
+    </script>
+</body>
+
+</html>

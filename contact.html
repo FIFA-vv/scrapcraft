@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us — Scrapcraft</title>
+    <meta name="description"
+        content="Get in touch with Scrapcraft support or view frequently asked questions about customized celebration pages.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FDFBF7',
+                        oatmeal: '#F4EFE6',
+                        espresso: '#3D312A',
+                        blush: '#D98880',
+                        sage: '#94A388',
+                        warmgray: 'rgba(61,49,42,0.12)'
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        handwritten: ['Caveat', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-cream text-espresso min-h-screen flex flex-col justify-between selection:bg-blush/20">
+
+    <!-- TOP NAVIGATION BAR -->
+    <nav
+        class="max-w-6xl mx-auto w-full px-6 py-4 flex items-center justify-between border-b border-warmgray/50 bg-cream/90 backdrop-blur-md sticky top-0 z-40">
+        <a href="index.html" class="flex items-center gap-2.5">
+            <div
+                class="w-9 h-9 rounded-full bg-blush/20 border border-blush/40 flex items-center justify-center text-blush font-serif font-bold text-lg">
+                ✨
+            </div>
+            <span class="font-serif font-bold text-2xl text-espresso tracking-tight">Scrapcraft</span>
+        </a>
+
+        <!-- Navigation Links -->
+        <div class="hidden md:flex items-center gap-6 text-xs sm:text-sm font-medium text-espresso/80">
+            <a href="index.html" class="hover:text-blush transition-colors">Home</a>
+            <a href="about.html" class="hover:text-blush transition-colors">About</a>
+            <a href="features.html" class="hover:text-blush transition-colors">Features</a>
+            <a href="how-it-works.html" class="hover:text-blush transition-colors">How It Works</a>
+            <a href="feedback.html" class="hover:text-blush transition-colors">Feedback</a>
+            <a href="contact.html" class="text-blush font-semibold border-b-2 border-blush pb-0.5">Contact</a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="flex items-center gap-3">
+            <a href="index.html"
+                class="px-5 py-2 rounded-full bg-espresso text-cream text-xs sm:text-sm font-medium hover:bg-espresso/90 transition-all shadow-sm flex items-center gap-2">
+                <span>✨ Create Yours</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTACT CONTENT -->
+    <main class="max-w-5xl mx-auto px-6 py-12 space-y-16 flex-grow">
+
+        <!-- Hero Header -->
+        <div class="text-center space-y-4 max-w-2xl mx-auto">
+            <span
+                class="px-3.5 py-1 bg-blush/15 text-blush text-xs font-semibold tracking-widest uppercase rounded-full">Get
+                In Touch</span>
+            <h1 class="font-serif text-4xl sm:text-6xl font-bold tracking-tight text-espresso leading-tight">
+                We're Here to Help
+            </h1>
+            <p class="font-sans text-sm sm:text-base text-espresso/80 leading-relaxed">
+                Have questions about website customization, payment verification, or custom wallpaper requests? Send us
+                a message!
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+            <!-- Contact Form -->
+            <div class="bg-oatmeal/60 border border-warmgray rounded-3xl p-8 space-y-4 shadow-xs">
+                <h2 class="font-serif text-2xl font-bold text-espresso">Send Us a Message</h2>
+                <p class="text-xs text-espresso/70 leading-relaxed">Fill out the form below and our team will get back
+                    to you within a few hours.</p>
+
+                <form onsubmit="submitContactForm(event)" class="space-y-3 pt-2">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-espresso/70 mb-1">Your
+                            Name</label>
+                        <input type="text" required placeholder="e.g. Sophia"
+                            class="w-full px-4 py-2.5 rounded-xl bg-cream border border-warmgray text-espresso text-sm outline-none focus:border-blush">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-espresso/70 mb-1">Your
+                            Email</label>
+                        <input type="email" required placeholder="sophia@example.com"
+                            class="w-full px-4 py-2.5 rounded-xl bg-cream border border-warmgray text-espresso text-sm outline-none focus:border-blush">
+                    </div>
+                    <div>
+                        <label
+                            class="block text-xs font-semibold uppercase tracking-wider text-espresso/70 mb-1">Message</label>
+                        <textarea rows="4" required placeholder="How can we help you?"
+                            class="w-full px-4 py-2.5 rounded-xl bg-cream border border-warmgray text-espresso text-sm outline-none focus:border-blush"></textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full py-2.5 rounded-full bg-espresso text-cream text-xs font-medium hover:bg-espresso/90 shadow-sm">
+                        Send Message ✉️
+                    </button>
+                </form>
+                <div id="contact-success" class="hidden text-sage text-xs font-semibold pt-1">✨ Thank you! Your message
+                    has been sent.</div>
+            </div>
+
+            <!-- FAQ Accordions -->
+            <div class="space-y-4">
+                <span class="text-xs uppercase tracking-widest font-semibold text-sage">Help & FAQ</span>
+                <h2 class="font-serif text-3xl font-bold text-espresso">Frequently Asked Questions</h2>
+
+                <div class="space-y-3">
+                    <details class="bg-oatmeal/80 border border-warmgray rounded-2xl p-4 text-xs group">
+                        <summary
+                            class="font-semibold text-espresso cursor-pointer flex justify-between items-center text-sm">
+                            How long does my generated link stay live? <span
+                                class="group-open:rotate-180 transition-transform">▼</span></summary>
+                        <p class="mt-2 text-espresso/70 leading-relaxed">Your custom celebration webpage link stays
+                            active permanently on our servers! Additionally, you get a full offline ZIP download
+                            package.</p>
+                    </details>
+
+                    <details class="bg-oatmeal/80 border border-warmgray rounded-2xl p-4 text-xs group">
+                        <summary
+                            class="font-semibold text-espresso cursor-pointer flex justify-between items-center text-sm">
+                            How does the Direct UPI QR Code payment work? <span
+                                class="group-open:rotate-180 transition-transform">▼</span></summary>
+                        <p class="mt-2 text-espresso/70 leading-relaxed">Simply scan the QR code with GPay, PhonePe,
+                            Paytm, or any UPI app, pay ₹99, and enter your 12-digit UPI UTR / Ref No. to unlock your
+                            website.</p>
+                    </details>
+
+                    <details class="bg-oatmeal/80 border border-warmgray rounded-2xl p-4 text-xs group">
+                        <summary
+                            class="font-semibold text-espresso cursor-pointer flex justify-between items-center text-sm">
+                            Can I host the generated ZIP file on my own server? <span
+                                class="group-open:rotate-180 transition-transform">▼</span></summary>
+                        <p class="mt-2 text-espresso/70 leading-relaxed">Yes! The downloaded ZIP contains complete
+                            standalone HTML, CSS, JavaScript, and background images that work anywhere without
+                            dependencies.</p>
+                    </details>
+
+                    <details class="bg-oatmeal/80 border border-warmgray rounded-2xl p-4 text-xs group">
+                        <summary
+                            class="font-semibold text-espresso cursor-pointer flex justify-between items-center text-sm">
+                            What background wallpaper options are available? <span
+                                class="group-open:rotate-180 transition-transform">▼</span></summary>
+                        <p class="mt-2 text-espresso/70 leading-relaxed">We offer 9 curated wallpapers: Yellow Gingham,
+                            Soft Pink Gingham, Deep Red Picnic Gingham, Midnight Stars, Slate Stars, Blue Stripes, Graph
+                            Grid, Lipstick Kisses, and Blue Marble.</p>
+                    </details>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-8 text-center text-xs text-espresso/50 border-t border-warmgray/50 bg-oatmeal/30 space-y-2">
+        <div class="flex justify-center gap-6 text-espresso/70 font-medium">
+            <a href="index.html" class="hover:text-blush">Home</a>
+            <a href="about.html" class="hover:text-blush">About</a>
+            <a href="features.html" class="hover:text-blush">Features</a>
+            <a href="how-it-works.html" class="hover:text-blush">How It Works</a>
+            <a href="feedback.html" class="hover:text-blush">Feedback</a>
+            <a href="contact.html" class="hover:text-blush">Contact</a>
+        </div>
+        <p>© 2026 Scrapcraft — Crafted with warm thoughts & Pinterest aesthetic aesthetics.</p>
+    </footer>
+
+    <script>
+        function submitContactForm(e) {
+            e.preventDefault();
+            document.getElementById('contact-success').classList.remove('hidden');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works — Scrapcraft</title>
+    <meta name="description"
+        content="Learn how to customize, preview, pay via UPI QR code, and download your personalized Scrapcraft celebration webpage.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FDFBF7',
+                        oatmeal: '#F4EFE6',
+                        espresso: '#3D312A',
+                        blush: '#D98880',
+                        sage: '#94A388',
+                        warmgray: 'rgba(61,49,42,0.12)'
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        handwritten: ['Caveat', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-cream text-espresso min-h-screen flex flex-col justify-between selection:bg-blush/20">
+
+    <!-- TOP NAVIGATION BAR -->
+    <nav
+        class="max-w-6xl mx-auto w-full px-6 py-4 flex items-center justify-between border-b border-warmgray/50 bg-cream/90 backdrop-blur-md sticky top-0 z-40">
+        <a href="index.html" class="flex items-center gap-2.5">
+            <div
+                class="w-9 h-9 rounded-full bg-blush/20 border border-blush/40 flex items-center justify-center text-blush font-serif font-bold text-lg">
+                ✨
+            </div>
+            <span class="font-serif font-bold text-2xl text-espresso tracking-tight">Scrapcraft</span>
+        </a>
+
+        <!-- Navigation Links -->
+        <div class="hidden md:flex items-center gap-6 text-xs sm:text-sm font-medium text-espresso/80">
+            <a href="index.html" class="hover:text-blush transition-colors">Home</a>
+            <a href="about.html" class="hover:text-blush transition-colors">About</a>
+            <a href="features.html" class="hover:text-blush transition-colors">Features</a>
+            <a href="how-it-works.html" class="text-blush font-semibold border-b-2 border-blush pb-0.5">How It Works</a>
+            <a href="feedback.html" class="hover:text-blush transition-colors">Feedback</a>
+            <a href="contact.html" class="hover:text-blush transition-colors">Contact</a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="flex items-center gap-3">
+            <a href="index.html"
+                class="px-5 py-2 rounded-full bg-espresso text-cream text-xs sm:text-sm font-medium hover:bg-espresso/90 transition-all shadow-sm flex items-center gap-2">
+                <span>✨ Create Yours</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- MAIN HOW IT WORKS CONTENT -->
+    <main class="max-w-5xl mx-auto px-6 py-12 space-y-16 flex-grow">
+
+        <!-- Hero Header -->
+        <div class="text-center space-y-4 max-w-2xl mx-auto">
+            <span
+                class="px-3.5 py-1 bg-blush/15 text-blush text-xs font-semibold tracking-widest uppercase rounded-full">Simple
+                4-Step Walkthrough</span>
+            <h1 class="font-serif text-4xl sm:text-6xl font-bold tracking-tight text-espresso leading-tight">
+                From Idea to Live Gift in Minutes
+            </h1>
+            <p class="font-sans text-sm sm:text-base text-espresso/80 leading-relaxed">
+                Creating your personalized celebration page is effortless. Follow these simple steps.
+            </p>
+        </div>
+
+        <!-- 4 Detailed Walkthrough Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <!-- Step 1 -->
+            <div
+                class="bg-oatmeal/70 border border-warmgray rounded-3xl p-8 space-y-4 relative shadow-xs flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <span
+                            class="w-10 h-10 rounded-full bg-blush text-cream flex items-center justify-center font-bold text-lg">1</span>
+                        <h2 class="font-serif font-bold text-2xl text-espresso">Choose Occasion & Customize</h2>
+                    </div>
+                    <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed">
+                        Select your occasion (Birthday 🎂, Valentine’s Day 💌, or Anniversary 💍). Type in your
+                        recipient's name, custom photo captions, and a heartfelt handwritten letter.
+                    </p>
+                </div>
+                <div class="p-3 bg-cream border border-warmgray rounded-xl font-mono text-xs text-blush">
+                    Input Name: "Sophia" | Occasion: Birthday
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div
+                class="bg-oatmeal/70 border border-warmgray rounded-3xl p-8 space-y-4 relative shadow-xs flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <span
+                            class="w-10 h-10 rounded-full bg-blush text-cream flex items-center justify-center font-bold text-lg">2</span>
+                        <h2 class="font-serif font-bold text-2xl text-espresso">Pick Wallpaper & Preview</h2>
+                    </div>
+                    <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed">
+                        Test wallpapers live on screen (Yellow Gingham, Midnight Stars, Pink Checks, Blue Marble). Test
+                        the interactive cake candles and wax letter right in your browser!
+                    </p>
+                </div>
+                <div class="p-3 bg-cream border border-warmgray rounded-xl text-xs text-sage font-semibold">
+                    ✨ Live interactive preview updates instantly!
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div
+                class="bg-oatmeal/70 border border-warmgray rounded-3xl p-8 space-y-4 relative shadow-xs flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <span
+                            class="w-10 h-10 rounded-full bg-blush text-cream flex items-center justify-center font-bold text-lg">3</span>
+                        <h2 class="font-serif font-bold text-2xl text-espresso">Scan Direct UPI QR Code</h2>
+                    </div>
+                    <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed">
+                        Click "Proceed to Pay (₹99)". Scan the direct UPI QR Code on GPay, PhonePe, or Paytm. Enter your
+                        12-digit transaction UTR reference number.
+                    </p>
+                </div>
+                <div class="p-3 bg-cream border border-warmgray rounded-xl font-mono text-xs text-espresso">
+                    UPI ID: scrapcraft@upi | Amount: ₹99
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div
+                class="bg-oatmeal/70 border border-warmgray rounded-3xl p-8 space-y-4 relative shadow-xs flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <span
+                            class="w-10 h-10 rounded-full bg-sage text-cream flex items-center justify-center font-bold text-lg">4</span>
+                        <h2 class="font-serif font-bold text-2xl text-espresso">Unlock Link & Download ZIP</h2>
+                    </div>
+                    <p class="text-xs sm:text-sm text-espresso/70 leading-relaxed">
+                        Click confirm! Your unique celebration webpage unlocks immediately. Copy your permanent URL to
+                        share on WhatsApp or download the offline static ZIP bundle.
+                    </p>
+                </div>
+                <div
+                    class="p-3 bg-cream border border-warmgray rounded-xl text-xs font-medium text-espresso flex justify-between">
+                    <span>🔗 Permanent Webpage</span>
+                    <span>📦 ZIP Download</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CTA Box -->
+        <div class="text-center pt-4">
+            <a href="index.html"
+                class="inline-block px-8 py-3 rounded-full bg-blush text-cream font-medium text-sm hover:bg-blush/90 shadow-md">
+                🚀 Start Creating Now
+            </a>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-8 text-center text-xs text-espresso/50 border-t border-warmgray/50 bg-oatmeal/30 space-y-2">
+        <div class="flex justify-center gap-6 text-espresso/70 font-medium">
+            <a href="index.html" class="hover:text-blush">Home</a>
+            <a href="about.html" class="hover:text-blush">About</a>
+            <a href="features.html" class="hover:text-blush">Features</a>
+            <a href="how-it-works.html" class="hover:text-blush">How It Works</a>
+            <a href="feedback.html" class="hover:text-blush">Feedback</a>
+            <a href="contact.html" class="hover:text-blush">Contact</a>
+        </div>
+        <p>© 2026 Scrapcraft — Crafted with warm thoughts & Pinterest aesthetic aesthetics.</p>
+    </footer>
+
+</body>
+
+</html>

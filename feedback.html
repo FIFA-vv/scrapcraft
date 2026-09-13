@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback & Reviews — Scrapcraft</title>
+    <meta name="description"
+        content="Read customer reviews and testimonials about Scrapcraft celebration pages, or leave your own feedback with star ratings.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FDFBF7',
+                        oatmeal: '#F4EFE6',
+                        espresso: '#3D312A',
+                        blush: '#D98880',
+                        sage: '#94A388',
+                        warmgray: 'rgba(61,49,42,0.12)'
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        handwritten: ['Caveat', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-cream text-espresso min-h-screen flex flex-col justify-between selection:bg-blush/20">
+
+    <!-- TOP NAVIGATION BAR -->
+    <nav
+        class="max-w-6xl mx-auto w-full px-6 py-4 flex items-center justify-between border-b border-warmgray/50 bg-cream/90 backdrop-blur-md sticky top-0 z-40">
+        <a href="index.html" class="flex items-center gap-2.5">
+            <div
+                class="w-9 h-9 rounded-full bg-blush/20 border border-blush/40 flex items-center justify-center text-blush font-serif font-bold text-lg">
+                ✨
+            </div>
+            <span class="font-serif font-bold text-2xl text-espresso tracking-tight">Scrapcraft</span>
+        </a>
+
+        <!-- Navigation Links -->
+        <div class="hidden md:flex items-center gap-6 text-xs sm:text-sm font-medium text-espresso/80">
+            <a href="index.html" class="hover:text-blush transition-colors">Home & Studio</a>
+            <a href="about.html" class="hover:text-blush transition-colors">About</a>
+            <a href="features.html" class="hover:text-blush transition-colors">Features</a>
+            <a href="how-it-works.html" class="hover:text-blush transition-colors">How It Works</a>
+            <a href="feedback.html" class="text-blush font-semibold border-b-2 border-blush pb-0.5">Feedback</a>
+            <a href="contact.html" class="hover:text-blush transition-colors">Contact</a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="flex items-center gap-3">
+            <a href="index.html"
+                class="px-5 py-2 rounded-full bg-espresso text-cream text-xs sm:text-sm font-medium hover:bg-espresso/90 transition-all shadow-sm flex items-center gap-2">
+                <span>✨ Create Yours</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- MAIN FEEDBACK CONTENT -->
+    <main class="max-w-5xl mx-auto px-6 py-12 space-y-16 flex-grow">
+
+        <!-- Hero Header -->
+        <div class="text-center space-y-4 max-w-2xl mx-auto">
+            <span
+                class="px-3.5 py-1 bg-blush/15 text-blush text-xs font-semibold tracking-widest uppercase rounded-full">Wall
+                of Love</span>
+            <h1 class="font-serif text-4xl sm:text-6xl font-bold tracking-tight text-espresso leading-tight">
+                Loved by Thousands of Celebrators
+            </h1>
+            <p class="font-sans text-sm sm:text-base text-espresso/80 leading-relaxed">
+                See how people are using Scrapcraft to create unforgettable birthday, anniversary, and Valentine’s Day
+                gifts.
+            </p>
+        </div>
+
+        <!-- Feedback Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="feedback-grid">
+
+            <div class="bg-oatmeal/80 border border-warmgray rounded-2xl p-6 space-y-3 shadow-xs">
+                <div class="flex text-amber-500 text-sm">★★★★★</div>
+                <p class="font-handwritten text-2xl text-espresso/90 leading-snug">"My girlfriend literally cried when
+                    she blew out the virtual candles and read the letter! The Gingham background is so aesthetic."</p>
+                <div class="text-xs text-espresso/60 font-semibold">— Rohan M., Mumbai</div>
+            </div>
+
+            <div class="bg-oatmeal/80 border border-warmgray rounded-2xl p-6 space-y-3 shadow-xs">
+                <div class="flex text-amber-500 text-sm">★★★★★</div>
+                <p class="font-handwritten text-2xl text-espresso/90 leading-snug">"Made a Valentine's page in under 3
+                    minutes. The Midnight Stars wallpaper looks unreal on mobile screen!"</p>
+                <div class="text-xs text-espresso/60 font-semibold">— Ananya K., Bengaluru</div>
+            </div>
+
+            <div class="bg-oatmeal/80 border border-warmgray rounded-2xl p-6 space-y-3 shadow-xs">
+                <div class="flex text-amber-500 text-sm">★★★★★</div>
+                <p class="font-handwritten text-2xl text-espresso/90 leading-snug">"Super quick QR payment and I got
+                    both the live link and zip download instantly. 10/10 gift idea."</p>
+                <div class="text-xs text-espresso/60 font-semibold">— Kabir S., Delhi</div>
+            </div>
+
+            <div class="bg-oatmeal/80 border border-warmgray rounded-2xl p-6 space-y-3 shadow-xs">
+                <div class="flex text-amber-500 text-sm">★★★★★</div>
+                <p class="font-handwritten text-2xl text-espresso/90 leading-snug">"Sent this to my sister for her 25th
+                    birthday. She loved the vinyl music player and Polaroid captions!"</p>
+                <div class="text-xs text-espresso/60 font-semibold">— Priya P., Pune</div>
+            </div>
+
+            <div class="bg-oatmeal/80 border border-warmgray rounded-2xl p-6 space-y-3 shadow-xs">
+                <div class="flex text-amber-500 text-sm">★★★★★</div>
+                <p class="font-handwritten text-2xl text-espresso/90 leading-snug">"The red picnic gingham wallpaper
+                    gave it such a vintage nostalgic feel. Best ₹99 spent."</p>
+                <div class="text-xs text-espresso/60 font-semibold">— Devansh R., Hyderabad</div>
+            </div>
+
+            <div class="bg-oatmeal/80 border border-warmgray rounded-2xl p-6 space-y-3 shadow-xs">
+                <div class="flex text-amber-500 text-sm">★★★★★</div>
+                <p class="font-handwritten text-2xl text-espresso/90 leading-snug">"Our 1st anniversary page turned out
+                    so magical. Highly recommend to anyone wanting a cute personal gesture!"</p>
+                <div class="text-xs text-espresso/60 font-semibold">— Meera & Arjun, Chennai</div>
+            </div>
+
+        </div>
+
+        <!-- Submit Feedback Section with Interactive 5-Star Rating -->
+        <div
+            class="max-w-xl mx-auto bg-oatmeal/80 border border-warmgray rounded-3xl p-8 space-y-4 text-center shadow-sm">
+            <h2 class="font-serif text-2xl font-bold text-espresso">Leave Your Feedback</h2>
+            <p class="text-xs text-espresso/70">Rate your experience and share your thoughts with our community.</p>
+
+            <form onsubmit="submitReview(event)" class="space-y-4 text-left pt-2">
+                <!-- Star Rating Selector -->
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-espresso/70 mb-1.5">Select
+                        Star Rating</label>
+                    <div class="flex items-center gap-2 text-2xl cursor-pointer select-none" id="star-rating-picker">
+                        <span onclick="setRating(1)"
+                            class="star-item text-amber-500 hover:scale-125 transition-transform">★</span>
+                        <span onclick="setRating(2)"
+                            class="star-item text-amber-500 hover:scale-125 transition-transform">★</span>
+                        <span onclick="setRating(3)"
+                            class="star-item text-amber-500 hover:scale-125 transition-transform">★</span>
+                        <span onclick="setRating(4)"
+                            class="star-item text-amber-500 hover:scale-125 transition-transform">★</span>
+                        <span onclick="setRating(5)"
+                            class="star-item text-amber-500 hover:scale-125 transition-transform">★</span>
+                        <span class="text-xs font-bold text-espresso/70 ml-2" id="rating-label">5.0 / 5 Stars</span>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-espresso/70 mb-1">Your
+                        Name</label>
+                    <input type="text" id="fb-name" required placeholder="e.g. Aarav"
+                        class="w-full px-4 py-2.5 rounded-xl bg-cream border border-warmgray text-espresso text-sm outline-none focus:border-blush">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-espresso/70 mb-1">Your
+                        Review</label>
+                    <textarea id="fb-msg" rows="3" required placeholder="Share your experience..."
+                        class="w-full px-4 py-2.5 rounded-xl bg-cream border border-warmgray text-espresso text-sm outline-none focus:border-blush font-handwritten text-lg"></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full py-3 rounded-full bg-blush text-cream font-medium text-xs hover:bg-blush/90 shadow-md transition-all active:scale-95">
+                    💬 Submit Review
+                </button>
+            </form>
+            <div id="fb-success" class="hidden text-sage text-xs font-semibold pt-1">✨ Thank you for your review! It has
+                been added to the Wall of Love.</div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-8 text-center text-xs text-espresso/50 border-t border-warmgray/50 bg-oatmeal/30 space-y-2">
+        <div class="flex justify-center gap-6 text-espresso/70 font-medium">
+            <a href="index.html" class="hover:text-blush">Home & Studio</a>
+            <a href="about.html" class="hover:text-blush">About</a>
+            <a href="features.html" class="hover:text-blush">Features</a>
+            <a href="how-it-works.html" class="hover:text-blush">How It Works</a>
+            <a href="feedback.html" class="hover:text-blush">Feedback</a>
+            <a href="contact.html" class="hover:text-blush">Contact</a>
+        </div>
+        <p>© 2026 Scrapcraft — Crafted with warm thoughts & Pinterest aesthetic aesthetics.</p>
+    </footer>
+
+    <script>
+        let selectedStars = 5;
+
+        function setRating(stars) {
+            selectedStars = stars;
+            const starItems = document.querySelectorAll('.star-item');
+            starItems.forEach((star, index) => {
+                if (index < stars) {
+                    star.className = 'star-item text-amber-500 hover:scale-125 transition-transform';
+                } else {
+                    star.className = 'star-item text-gray-300 hover:scale-125 transition-transform';
+                }
+            });
+            document.getElementById('rating-label').innerText = `${stars}.0 / 5 Stars`;
+        }
+
+        function submitReview(e) {
+            e.preventDefault();
+            const name = document.getElementById('fb-name').value.trim();
+            const msg = document.getElementById('fb-msg').value.trim();
+
+            if (name && msg) {
+                const grid = document.getElementById('feedback-grid');
+                const card = document.createElement('div');
+                card.className = 'bg-oatmeal/80 border border-warmgray rounded-2xl p-6 space-y-3 shadow-xs';
+
+                let starsStr = '★'.repeat(selectedStars) + '☆'.repeat(5 - selectedStars);
+
+                card.innerHTML = `
+                  <div class="flex text-amber-500 text-sm">${starsStr}</div>
+                  <p class="font-handwritten text-2xl text-espresso/90 leading-snug">"${msg}"</p>
+                  <div class="text-xs text-espresso/60 font-semibold">— ${name}</div>
+                `;
+                grid.prepend(card);
+                document.getElementById('fb-success').classList.remove('hidden');
+                document.getElementById('fb-name').value = '';
+                document.getElementById('fb-msg').value = '';
+            }
+        }
+    </script>
+</body>
+
+</html>
